@@ -107,16 +107,20 @@ void HuffmanCode::WriteHuffmanCode(ofstream &os) {
 		os.write(&((it->second)[0]), (it->second).size() * sizeof(char)); // code
 		it++;
 	}
+
+	// end flag of huaffman code
 	char c = '\n';
 	cnt = -1;
 	os.write(&c, sizeof(char));
-	os.write((const char*) &cnt, sizeof(int)); // end of huaffman code
+	os.write((const char*) &cnt, sizeof(int));
 }
 
 void HuffmanCode::Compressing(string src, string dest) {
 	ifstream is(src, ios::binary);
 	ofstream os(dest, ios::binary);
+
 	WriteHuffmanCode(os);
+
 	char *is_buf = new char[MAX_LEN], *os_buf = new char[MAX_LEN];
 	list<char> tmp_hcode;
 	int start_pos = 0, i, j, k, len, t;
@@ -210,7 +214,7 @@ void HuffmanCode::ConstructHuffmanTreeFromFile(ifstream &is) {
 	while (true) {
 		is.read(&letter, sizeof(char)); // letter
 		is.read((char*) &len, sizeof(int)); //length
-		if (letter == '\n' && len == -1)
+		if (letter == '\n' && len == -1) // reach end flag of huaffman code
 			break;
 		string code(len, '\0'); // char *tmp = new char [len + 1]; tmp[len] = '\0';
 		is.read(&code[0], len * sizeof(char));

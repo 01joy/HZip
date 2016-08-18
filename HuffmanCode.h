@@ -15,7 +15,7 @@
 #include<fstream>
 using namespace std;
 
-const int MAX_LEN = 100*1024*1024; // read 10MB every time
+const int MAX_LEN = 10*1024*1024; // read 10MB every time
 const unsigned char MARKS[8] = { 0x80,0x40,0x20,0x10,0x8,0x4,0x2,0x1 }; // x & MARKS[i] to get ith bit
 
 
